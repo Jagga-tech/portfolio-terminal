@@ -614,7 +614,7 @@ export default function Terminal() {
                 color: getLineColor(line.type),
                 whiteSpace: 'pre-wrap',
                 wordBreak: 'break-word',
-                minHeight: line.content === '' ? '1.6em' : undefined,
+                minHeight: (line.content ?? '') === '' ? '1.6em' : undefined,
                 lineHeight: '1.6',
               }}
             >
@@ -627,7 +627,7 @@ export default function Terminal() {
                 >
                   {line.content}
                 </a>
-              ) : line.content.includes('\x1b') ? (
+              ) : (line.content ?? '').includes('\x1b') ? (
                 <span>
                   {line.content.split('\x1b').map((part, i) =>
                     i % 2 === 0 ? (
