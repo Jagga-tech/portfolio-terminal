@@ -10,14 +10,13 @@ interface TerminalLine {
   type: LineType;
   content: string;
   href?: string;
-  delay?: number;
 }
 
 // ─── Data ────────────────────────────────────────────────────────────
 const PROMPT = 'chanpreet@portfolio:~$ ';
 
 const COMMANDS = [
-  'home', 'help', 'whoami', 'ls', 'ls projects', 'cat resume', 'cat alovia',
+  'help', 'whoami', 'ls', 'ls projects', 'cat resume', 'cat alovia',
   'cat hackhayward', 'cat univibe', 'cat pantrypal', 'skills', 'contact',
   'open linkedin', 'open github', 'open resume', 'clear', 'about --verbose',
   'sudo hire chanpreet', 'sudo rm -rf chanpreet', 'matrix',
@@ -35,60 +34,57 @@ const BOOT_LINES = [
   '',
 ];
 
-const WELCOME = '__RUN_HOME__';
+// ─── Home Section Data (rendered as permanent header) ────────────────
+const HOME_LINES: { type: LineType; content: string; href?: string }[] = [
+  { type: 'ascii', content: '  ____ _                                     _   ' },
+  { type: 'ascii', content: ' / ___| |__   __ _ _ __  _ __  _ __ ___  ___| |_ ' },
+  { type: 'ascii', content: '| |   | \'_ \\ / _` | \'_ \\| \'_ \\| \'__/ _ \\/ _ \\ __|' },
+  { type: 'ascii', content: '| |___| | | | (_| | | | | |_) | | |  __/  __/ |_ ' },
+  { type: 'ascii', content: ' \\____|_| |_|\\__,_|_| |_| .__/|_|  \\___|\\___|\\__|' },
+  { type: 'ascii', content: '                        |_|                       ' },
+  { type: 'output', content: '' },
+  { type: 'success', content: '  Product Manager & AI Builder' },
+  { type: 'output', content: '  Hayward, CA | Open to Full-Time PM Roles' },
+  { type: 'output', content: '' },
+  { type: 'warning', content: '── About ──────────────────────────────────────' },
+  { type: 'output', content: '  I ship AI-powered products, organize hackathons,' },
+  { type: 'output', content: '  and build things that solve real problems.' },
+  { type: 'output', content: '' },
+  { type: 'warning', content: '── Experience ─────────────────────────────────' },
+  { type: 'success', content: '  ● OpenAI CSU Student Ambassador  — CSUEB (Oct 2025-Present)' },
+  { type: 'success', content: '  ● Library Ambassador             — CSUEB (Mar 2025-Present)' },
+  { type: 'output', content: '  ● Office Support Assistant        — Sierra College (2023-2024)' },
+  { type: 'output', content: '' },
+  { type: 'warning', content: '── Projects ───────────────────────────────────' },
+  { type: 'success', content: '  🟢 Alovia AI      AI content protection        aloviaai.com' },
+  { type: 'output', content: '  🟡 HackHayward    Campus hackathon              Tech Lead' },
+  { type: 'output', content: '  ⏸️  Univibe        Student collaboration         Paused' },
+  { type: 'output', content: '  ✅ PantryPal      Grocery & recipe app          Shipped' },
+  { type: 'output', content: '' },
+  { type: 'warning', content: '── Skills ─────────────────────────────────────' },
+  { type: 'output', content: '  Product  User Research, Roadmapping, PRDs, A/B Testing' },
+  { type: 'output', content: '  AI       Prompt Engineering, LLM Integration, Claude Code' },
+  { type: 'output', content: '  Tech     Python, Kotlin, Next.js, Git, Firebase, Figma' },
+  { type: 'output', content: '' },
+  { type: 'warning', content: '── Contact ────────────────────────────────────' },
+  { type: 'link', content: '  Email     chanpreet.singh.cv@gmail.com', href: 'mailto:chanpreet.singh.cv@gmail.com' },
+  { type: 'link', content: '  LinkedIn  linkedin.com/in/chanpreet-singh-259003259', href: 'https://www.linkedin.com/in/chanpreet-singh-259003259' },
+  { type: 'link', content: '  GitHub    github.com/Jagga-tech', href: 'https://github.com/Jagga-tech' },
+  { type: 'output', content: '' },
+  { type: 'system', content: '── Commands ───────────────────────────────────' },
+  { type: 'system', content: '  help | whoami | cat resume | ls projects | skills' },
+  { type: 'system', content: '  cat <project> | contact | about --verbose' },
+  { type: 'system', content: '  open linkedin | open github | open resume | clear' },
+];
 
+// ─── Command Handler ─────────────────────────────────────────────────
 function getOutput(cmd: string): TerminalLine[] {
   const id = () => Date.now() + Math.random();
 
   switch (cmd) {
-    case 'home':
-      return [
-        { id: id(), type: 'ascii', content: '  ____ _                                     _   ' },
-        { id: id(), type: 'ascii', content: ' / ___| |__   __ _ _ __  _ __  _ __ ___  ___| |_ ' },
-        { id: id(), type: 'ascii', content: '| |   | \'_ \\ / _` | \'_ \\| \'_ \\| \'__/ _ \\/ _ \\ __|' },
-        { id: id(), type: 'ascii', content: '| |___| | | | (_| | | | | |_) | | |  __/  __/ |_ ' },
-        { id: id(), type: 'ascii', content: ' \\____|_| |_|\\__,_|_| |_| .__/|_|  \\___|\\___|\\__|' },
-        { id: id(), type: 'ascii', content: '                        |_|                       ' },
-        { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'success', content: '  Product Manager & AI Builder' },
-        { id: id(), type: 'output', content: '  Hayward, CA | Open to Full-Time PM Roles' },
-        { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'warning', content: '── About ──────────────────────────────────────' },
-        { id: id(), type: 'output', content: '  I ship AI-powered products, organize hackathons,' },
-        { id: id(), type: 'output', content: '  and build things that solve real problems.' },
-        { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'warning', content: '── Experience ─────────────────────────────────' },
-        { id: id(), type: 'success', content: '  ● OpenAI CSU Student Ambassador  — CSUEB (Oct 2025-Present)' },
-        { id: id(), type: 'success', content: '  ● Library Ambassador             — CSUEB (Mar 2025-Present)' },
-        { id: id(), type: 'output', content: '  ● Office Support Assistant        — Sierra College (2023-2024)' },
-        { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'warning', content: '── Projects ───────────────────────────────────' },
-        { id: id(), type: 'success', content: '  🟢 Alovia AI      AI content protection        aloviaai.com' },
-        { id: id(), type: 'output', content: '  🟡 HackHayward    Campus hackathon              Tech Lead' },
-        { id: id(), type: 'output', content: '  ⏸️  Univibe        Student collaboration         Paused' },
-        { id: id(), type: 'output', content: '  ✅ PantryPal      Grocery & recipe app          Shipped' },
-        { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'warning', content: '── Skills ─────────────────────────────────────' },
-        { id: id(), type: 'output', content: '  Product  User Research, Roadmapping, PRDs, A/B Testing' },
-        { id: id(), type: 'output', content: '  AI       Prompt Engineering, LLM Integration, Claude Code' },
-        { id: id(), type: 'output', content: '  Tech     Python, Kotlin, Next.js, Git, Firebase, Figma' },
-        { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'warning', content: '── Contact ────────────────────────────────────' },
-        { id: id(), type: 'link', content: '  Email     chanpreet.singh.cv@gmail.com', href: 'mailto:chanpreet.singh.cv@gmail.com' },
-        { id: id(), type: 'link', content: '  LinkedIn  linkedin.com/in/chanpreet-singh-259003259', href: 'https://www.linkedin.com/in/chanpreet-singh-259003259' },
-        { id: id(), type: 'link', content: '  GitHub    github.com/Jagga-tech', href: 'https://github.com/Jagga-tech' },
-        { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'system', content: '── Commands ───────────────────────────────────' },
-        { id: id(), type: 'system', content: '  home | help | whoami | cat resume | ls projects' },
-        { id: id(), type: 'system', content: '  cat <project> | skills | contact | about --verbose' },
-        { id: id(), type: 'system', content: '  open linkedin | open github | open resume | clear' },
-        { id: id(), type: 'output', content: '' },
-      ];
-
     case 'help':
       return [
         { id: id(), type: 'warning', content: '── Available Commands ──────────────────────────' },
-        { id: id(), type: 'output', content: '  home              Full profile overview' },
         { id: id(), type: 'output', content: '  help              Show this help menu' },
         { id: id(), type: 'output', content: '  whoami            Who is Chanpreet?' },
         { id: id(), type: 'output', content: '  ls                List all sections' },
@@ -102,7 +98,7 @@ function getOutput(cmd: string): TerminalLine[] {
         { id: id(), type: 'output', content: '  open linkedin     Open LinkedIn' },
         { id: id(), type: 'output', content: '  open github       Open GitHub' },
         { id: id(), type: 'output', content: '  open resume       Download resume' },
-        { id: id(), type: 'output', content: '  clear             Clear terminal' },
+        { id: id(), type: 'output', content: '  clear             Clear terminal output' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'system', content: '  Try: sudo hire chanpreet  😏' },
       ];
@@ -364,6 +360,40 @@ function getOutput(cmd: string): TerminalLine[] {
   }
 }
 
+// ─── Line Renderer ───────────────────────────────────────────────────
+function TerminalLineView({ line }: { line: { type: LineType; content: string; href?: string } }) {
+  const color = (() => {
+    switch (line.type) {
+      case 'input': return 'var(--dim)';
+      case 'error': return 'var(--red)';
+      case 'success': return 'var(--green)';
+      case 'warning': return 'var(--yellow)';
+      case 'system': return 'var(--cyan)';
+      case 'ascii': return 'var(--cyan)';
+      case 'link': return 'var(--cyan)';
+      default: return 'var(--text)';
+    }
+  })();
+
+  return (
+    <div style={{
+      color,
+      whiteSpace: 'pre-wrap',
+      wordBreak: 'break-word',
+      minHeight: (line.content ?? '') === '' ? '1.6em' : undefined,
+      lineHeight: '1.6',
+    }}>
+      {line.type === 'link' && line.href ? (
+        <a href={line.href} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--cyan)' }}>
+          {line.content}
+        </a>
+      ) : (
+        line.content ?? ''
+      )}
+    </div>
+  );
+}
+
 // ─── Matrix Rain Component ───────────────────────────────────────────
 function MatrixRain({ onDone }: { onDone: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -371,7 +401,6 @@ function MatrixRain({ onDone }: { onDone: () => void }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -389,7 +418,6 @@ function MatrixRain({ onDone }: { onDone: () => void }) {
     const draw = () => {
       ctx.fillStyle = 'rgba(13, 13, 13, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00ff88';
       ctx.font = `${fontSize}px JetBrains Mono, monospace`;
 
       for (let i = 0; i < drops.length; i++) {
@@ -415,20 +443,15 @@ function MatrixRain({ onDone }: { onDone: () => void }) {
   }, [onDone]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 100,
-        background: '#0d0d0d',
-      }}
-    />
+    <canvas ref={canvasRef} style={{ position: 'fixed', inset: 0, zIndex: 100, background: '#0d0d0d' }} />
   );
 }
 
 // ─── Main Terminal ───────────────────────────────────────────────────
 export default function Terminal() {
+  const [bootLines, setBootLines] = useState<string[]>([]);
+  const [homeVisible, setHomeVisible] = useState(false);
+  const [homeIndex, setHomeIndex] = useState(0);
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<string[]>([]);
@@ -437,48 +460,47 @@ export default function Terminal() {
   const [showMatrix, setShowMatrix] = useState(false);
   const [tabHint, setTabHint] = useState('');
 
-  const outputRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-scroll to bottom
+  // Auto-scroll
   const scrollToBottom = useCallback(() => {
-    if (outputRef.current) {
-      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, []);
 
   useEffect(() => {
     scrollToBottom();
-  }, [lines, scrollToBottom]);
+  }, [bootLines, homeIndex, lines, scrollToBottom]);
 
-  // Boot sequence
+  // Boot sequence → then reveal home lines one by one
   useEffect(() => {
     let i = 0;
     const bootTimer = setInterval(() => {
       if (i < BOOT_LINES.length) {
-        setLines(prev => [...prev, {
-          id: Date.now() + Math.random(),
-          type: 'system' as LineType,
-          content: BOOT_LINES[i],
-        }]);
+        setBootLines(prev => [...prev, BOOT_LINES[i]]);
         i++;
       } else {
         clearInterval(bootTimer);
-        // Auto-run home command after boot
-        const homeOutput = getOutput('home');
-        homeOutput.forEach((line, j) => {
-          setTimeout(() => {
-            setLines(prev => [...prev, line]);
-            if (j === homeOutput.length - 1) {
-              setBooted(true);
-            }
-          }, j * 30);
-        });
+        setHomeVisible(true);
       }
     }, 100);
-
     return () => clearInterval(bootTimer);
   }, []);
+
+  // Animate home lines appearing
+  useEffect(() => {
+    if (!homeVisible) return;
+    if (homeIndex >= HOME_LINES.length) {
+      setBooted(true);
+      return;
+    }
+    const timer = setTimeout(() => {
+      setHomeIndex(prev => prev + 1);
+    }, 25);
+    return () => clearTimeout(timer);
+  }, [homeVisible, homeIndex]);
 
   // Focus input when booted
   useEffect(() => {
@@ -490,7 +512,6 @@ export default function Terminal() {
   const executeCommand = useCallback((cmd: string) => {
     const trimmed = cmd.trim().toLowerCase();
 
-    // Add input line
     setLines(prev => [...prev, {
       id: Date.now() + Math.random(),
       type: 'input' as LineType,
@@ -499,23 +520,19 @@ export default function Terminal() {
 
     if (!trimmed) return;
 
-    // Add to history
     setHistory(prev => [...prev, trimmed]);
     setHistoryIndex(-1);
 
-    // Handle clear
     if (trimmed === 'clear') {
       setLines([]);
       return;
     }
 
-    // Handle matrix
     if (trimmed === 'matrix') {
       setShowMatrix(true);
       return;
     }
 
-    // Get output and add lines with typing delay
     const output = getOutput(trimmed);
     output.forEach((line, i) => {
       setTimeout(() => {
@@ -537,7 +554,6 @@ export default function Terminal() {
       e.preventDefault();
       const current = input.trim().toLowerCase();
       if (!current) return;
-
       const matches = COMMANDS.filter(c => c.startsWith(current));
       if (matches.length === 1) {
         setInput(matches[0]);
@@ -577,23 +593,8 @@ export default function Terminal() {
   }, [input, history, historyIndex, executeCommand]);
 
   const handleContainerClick = useCallback(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    if (inputRef.current) inputRef.current.focus();
   }, []);
-
-  const getLineColor = (type: LineType): string => {
-    switch (type) {
-      case 'input': return 'var(--dim)';
-      case 'error': return 'var(--red)';
-      case 'success': return 'var(--green)';
-      case 'warning': return 'var(--yellow)';
-      case 'system': return 'var(--cyan)';
-      case 'ascii': return 'var(--cyan)';
-      case 'link': return 'var(--cyan)';
-      default: return 'var(--text)';
-    }
-  };
 
   return (
     <>
@@ -621,92 +622,61 @@ export default function Terminal() {
           overflow: 'hidden',
         }}
       >
-        {/* Output area */}
+        {/* Single scrollable area: boot → home (fixed) → terminal output */}
         <div
-          ref={outputRef}
-          style={{
-            flex: 1,
-            overflowY: 'auto',
-            paddingBottom: '8px',
-          }}
+          ref={scrollRef}
+          style={{ flex: 1, overflowY: 'auto', paddingBottom: '8px' }}
         >
-          {lines.map(line => (
-            <div
-              key={line.id}
-              style={{
-                color: getLineColor(line.type),
-                whiteSpace: 'pre-wrap',
-                wordBreak: 'break-word',
-                minHeight: (line.content ?? '') === '' ? '1.6em' : undefined,
-                lineHeight: '1.6',
-              }}
-            >
-              {line.type === 'link' && line.href ? (
-                <a
-                  href={line.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'var(--cyan)' }}
-                >
-                  {line.content}
-                </a>
-              ) : (line.content ?? '').includes('\x1b') ? (
-                <span>
-                  {line.content.split('\x1b').map((part, i) =>
-                    i % 2 === 0 ? (
-                      <span key={i}>{part}</span>
-                    ) : (
-                      <span key={i} style={{ color: 'var(--cyan)', fontWeight: 700 }}>{part}</span>
-                    )
-                  )}
-                </span>
-              ) : (
-                line.content
-              )}
+          {/* Boot lines */}
+          {bootLines.map((line, i) => (
+            <div key={`boot-${i}`} style={{ color: 'var(--cyan)', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>
+              {line}
             </div>
+          ))}
+
+          {/* Permanent home section */}
+          {homeVisible && HOME_LINES.slice(0, homeIndex).map((line, i) => (
+            <TerminalLineView key={`home-${i}`} line={line} />
+          ))}
+
+          {/* Separator between home and commands */}
+          {booted && lines.length > 0 && (
+            <div style={{ color: 'var(--dim)', lineHeight: '1.6', margin: '4px 0' }}>
+              ────────────────────────────────────────────────
+            </div>
+          )}
+
+          {/* Command output (this is what clear wipes) */}
+          {lines.map(line => (
+            <TerminalLineView key={line.id} line={line} />
           ))}
         </div>
 
         {/* Tab hint */}
         {tabHint && (
-          <div style={{
-            color: 'var(--dim)',
-            fontSize: '12px',
-            padding: '2px 0',
-            whiteSpace: 'pre-wrap',
-          }}>
+          <div style={{ color: 'var(--dim)', fontSize: '12px', padding: '2px 0', whiteSpace: 'pre-wrap' }}>
             {tabHint}
           </div>
         )}
 
         {/* Input area */}
         {booted && (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              padding: '8px 0',
-              borderTop: '1px solid #1a1a1a',
-              position: 'relative',
-            }}
-          >
-            {/* Glow effect */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            padding: '8px 0',
+            borderTop: '1px solid #1a1a1a',
+            position: 'relative',
+          }}>
             <div style={{
               position: 'absolute',
               inset: '-2px 0',
               background: 'linear-gradient(180deg, transparent, rgba(0, 229, 255, 0.03), transparent)',
               pointerEvents: 'none',
             }} />
-
-            <span style={{
-              color: 'var(--cyan)',
-              whiteSpace: 'nowrap',
-              userSelect: 'none',
-              flexShrink: 0,
-            }}>
+            <span style={{ color: 'var(--cyan)', whiteSpace: 'nowrap', userSelect: 'none', flexShrink: 0 }}>
               {PROMPT}
             </span>
-
             <input
               ref={inputRef}
               type="text"
