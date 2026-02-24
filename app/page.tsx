@@ -17,7 +17,7 @@ interface TerminalLine {
 const PROMPT = 'chanpreet@portfolio:~$ ';
 
 const COMMANDS = [
-  'help', 'whoami', 'ls', 'ls projects', 'cat resume', 'cat alovia',
+  'home', 'help', 'whoami', 'ls', 'ls projects', 'cat resume', 'cat alovia',
   'cat hackhayward', 'cat univibe', 'cat pantrypal', 'skills', 'contact',
   'open linkedin', 'open github', 'open resume', 'clear', 'about --verbose',
   'sudo hire chanpreet', 'sudo rm -rf chanpreet', 'matrix',
@@ -35,32 +35,60 @@ const BOOT_LINES = [
   '',
 ];
 
-const WELCOME = [
-  '╔══════════════════════════════════════════════════════════════╗',
-  '║                                                              ║',
-  '║   ██████╗██╗  ██╗ █████╗ ███╗   ██╗██████╗                  ║',
-  '║  ██╔════╝██║  ██║██╔══██╗████╗  ██║██╔══██╗                 ║',
-  '║  ██║     ███████║███████║██╔██╗ ██║██████╔╝                  ║',
-  '║  ██║     ██╔══██║██╔══██║██║╚██╗██║██╔═══╝                  ║',
-  '║  ╚██████╗██║  ██║██║  ██║██║ ╚████║██║                      ║',
-  '║   ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝                      ║',
-  '║                                                              ║',
-  '║  Product Manager & AI Builder                                ║',
-  '║  Hayward, CA · Open to Full-Time PM Roles                   ║',
-  '║                                                              ║',
-  '╚══════════════════════════════════════════════════════════════╝',
-  '',
-  'Welcome to my interactive portfolio. Type \x1bhelp\x1b to get started.',
-  '',
-];
+const WELCOME = '__RUN_HOME__';
 
 function getOutput(cmd: string): TerminalLine[] {
   const id = () => Date.now() + Math.random();
 
   switch (cmd) {
+    case 'home':
+      return [
+        { id: id(), type: 'ascii', content: '  ____ _                                     _   ' },
+        { id: id(), type: 'ascii', content: ' / ___| |__   __ _ _ __  _ __  _ __ ___  ___| |_ ' },
+        { id: id(), type: 'ascii', content: '| |   | \'_ \\ / _` | \'_ \\| \'_ \\| \'__/ _ \\/ _ \\ __|' },
+        { id: id(), type: 'ascii', content: '| |___| | | | (_| | | | | |_) | | |  __/  __/ |_ ' },
+        { id: id(), type: 'ascii', content: ' \\____|_| |_|\\__,_|_| |_| .__/|_|  \\___|\\___|\\__|' },
+        { id: id(), type: 'ascii', content: '                        |_|                       ' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'success', content: '  Product Manager & AI Builder' },
+        { id: id(), type: 'output', content: '  Hayward, CA | Open to Full-Time PM Roles' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'warning', content: '── About ──────────────────────────────────────' },
+        { id: id(), type: 'output', content: '  I ship AI-powered products, organize hackathons,' },
+        { id: id(), type: 'output', content: '  and build things that solve real problems.' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'warning', content: '── Experience ─────────────────────────────────' },
+        { id: id(), type: 'success', content: '  ● OpenAI CSU Student Ambassador  — CSUEB (Oct 2025-Present)' },
+        { id: id(), type: 'success', content: '  ● Library Ambassador             — CSUEB (Mar 2025-Present)' },
+        { id: id(), type: 'output', content: '  ● Office Support Assistant        — Sierra College (2023-2024)' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'warning', content: '── Projects ───────────────────────────────────' },
+        { id: id(), type: 'success', content: '  🟢 Alovia AI      AI content protection        aloviaai.com' },
+        { id: id(), type: 'output', content: '  🟡 HackHayward    Campus hackathon              Tech Lead' },
+        { id: id(), type: 'output', content: '  ⏸️  Univibe        Student collaboration         Paused' },
+        { id: id(), type: 'output', content: '  ✅ PantryPal      Grocery & recipe app          Shipped' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'warning', content: '── Skills ─────────────────────────────────────' },
+        { id: id(), type: 'output', content: '  Product  User Research, Roadmapping, PRDs, A/B Testing' },
+        { id: id(), type: 'output', content: '  AI       Prompt Engineering, LLM Integration, Claude Code' },
+        { id: id(), type: 'output', content: '  Tech     Python, Kotlin, Next.js, Git, Firebase, Figma' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'warning', content: '── Contact ────────────────────────────────────' },
+        { id: id(), type: 'link', content: '  Email     chanpreet.singh.cv@gmail.com', href: 'mailto:chanpreet.singh.cv@gmail.com' },
+        { id: id(), type: 'link', content: '  LinkedIn  linkedin.com/in/chanpreet-singh-259003259', href: 'https://www.linkedin.com/in/chanpreet-singh-259003259' },
+        { id: id(), type: 'link', content: '  GitHub    github.com/Jagga-tech', href: 'https://github.com/Jagga-tech' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'system', content: '── Commands ───────────────────────────────────' },
+        { id: id(), type: 'system', content: '  home | help | whoami | cat resume | ls projects' },
+        { id: id(), type: 'system', content: '  cat <project> | skills | contact | about --verbose' },
+        { id: id(), type: 'system', content: '  open linkedin | open github | open resume | clear' },
+        { id: id(), type: 'output', content: '' },
+      ];
+
     case 'help':
       return [
         { id: id(), type: 'warning', content: '── Available Commands ──────────────────────────' },
+        { id: id(), type: 'output', content: '  home              Full profile overview' },
         { id: id(), type: 'output', content: '  help              Show this help menu' },
         { id: id(), type: 'output', content: '  whoami            Who is Chanpreet?' },
         { id: id(), type: 'output', content: '  ls                List all sections' },
@@ -436,21 +464,16 @@ export default function Terminal() {
         i++;
       } else {
         clearInterval(bootTimer);
-        // Add welcome after boot
-        let j = 0;
-        const welcomeTimer = setInterval(() => {
-          if (j < WELCOME.length) {
-            setLines(prev => [...prev, {
-              id: Date.now() + Math.random(),
-              type: 'ascii' as LineType,
-              content: WELCOME[j],
-            }]);
-            j++;
-          } else {
-            clearInterval(welcomeTimer);
-            setBooted(true);
-          }
-        }, 40);
+        // Auto-run home command after boot
+        const homeOutput = getOutput('home');
+        homeOutput.forEach((line, j) => {
+          setTimeout(() => {
+            setLines(prev => [...prev, line]);
+            if (j === homeOutput.length - 1) {
+              setBooted(true);
+            }
+          }, j * 30);
+        });
       }
     }, 100);
 
