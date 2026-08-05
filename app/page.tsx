@@ -16,10 +16,10 @@ interface TerminalLine {
 const PROMPT = 'chanpreet@portfolio:~$ ';
 
 const COMMANDS = [
-  'help', 'whoami', 'ls', 'ls projects', 'cat resume', 'cat alovia',
-  'cat hackhayward', 'cat univibe', 'cat pantrypal', 'skills', 'contact',
-  'open linkedin', 'open github', 'open resume', 'clear', 'about --verbose',
-  'sudo hire chanpreet', 'sudo rm -rf chanpreet', 'matrix',
+  'help', 'whoami', 'ls', 'ls projects', 'cat resume', 'cat twinhaus',
+  'cat alovia', 'cat hackhayward', 'cat univibe', 'cat pantrypal', 'skills',
+  'contact', 'open linkedin', 'open github', 'open resume', 'clear',
+  'about --verbose', 'sudo hire chanpreet', 'sudo rm -rf chanpreet', 'matrix',
 ];
 
 const BOOT_LINES = [
@@ -51,15 +51,16 @@ const HOME_LINES: { type: LineType; content: string; href?: string }[] = [
   { type: 'output', content: '  and build things that solve real problems.' },
   { type: 'output', content: '' },
   { type: 'warning', content: '── Experience ─────────────────────────────────' },
-  { type: 'success', content: '  ● OpenAI CSU Student Ambassador  — CSUEB (Oct 2025-Present)' },
-  { type: 'success', content: '  ● Library Ambassador             — CSUEB (Mar 2025-Present)' },
-  { type: 'output', content: '  ● Office Support Assistant        — Sierra College (2023-2024)' },
+  { type: 'success', content: '  ● OpenAI CSU Student Ambassador    CSUEB (Oct 2025-Present)' },
+  { type: 'success', content: '  ● Library Ambassador               CSUEB (Mar 2025-Present)' },
+  { type: 'output', content: '  ● Office Support Assistant         Sierra College (2023-2024)' },
   { type: 'output', content: '' },
   { type: 'warning', content: '── Projects ───────────────────────────────────' },
-  { type: 'success', content: '  🟢 Alovia AI      AI content protection        aloviaai.com' },
-  { type: 'output', content: '  🟡 HackHayward    Campus hackathon              Tech Lead' },
-  { type: 'output', content: '  ⏸️  Univibe        Student collaboration         Paused' },
-  { type: 'output', content: '  ✅ PantryPal      Grocery & recipe app          Shipped' },
+  { type: 'success', content: '     Twinhaus       3D AI home digital twin      Open Source' },
+  { type: 'success', content: '     Alovia AI      AI content protection        aloviaai.com' },
+  { type: 'output', content: '     HackHayward    Campus hackathon             Tech Lead' },
+  { type: 'output', content: '     Univibe        Student collaboration        Paused' },
+  { type: 'output', content: '     PantryPal      Grocery & recipe app         Shipped' },
   { type: 'output', content: '' },
   { type: 'warning', content: '── Skills ─────────────────────────────────────' },
   { type: 'output', content: '  Product  User Research, Roadmapping, PRDs, A/B Testing' },
@@ -91,7 +92,8 @@ function getOutput(cmd: string): TerminalLine[] {
         { id: id(), type: 'output', content: '  cat resume        View experience timeline' },
         { id: id(), type: 'output', content: '  ls projects       List all projects' },
         { id: id(), type: 'output', content: '  cat <project>     View project details' },
-        { id: id(), type: 'output', content: '                    (alovia, hackhayward, univibe, pantrypal)' },
+        { id: id(), type: 'output', content: '                    (twinhaus, alovia, hackhayward,' },
+        { id: id(), type: 'output', content: '                     univibe, pantrypal)' },
         { id: id(), type: 'output', content: '  skills            Print skills config' },
         { id: id(), type: 'output', content: '  about --verbose   Detailed bio' },
         { id: id(), type: 'output', content: '  contact           Contact info & links' },
@@ -100,7 +102,7 @@ function getOutput(cmd: string): TerminalLine[] {
         { id: id(), type: 'output', content: '  open resume       Download resume' },
         { id: id(), type: 'output', content: '  clear             Clear terminal output' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'system', content: '  Try: sudo hire chanpreet  😏' },
+        { id: id(), type: 'system', content: '  Try: sudo hire chanpreet' },
       ];
 
     case 'whoami':
@@ -128,10 +130,11 @@ function getOutput(cmd: string): TerminalLine[] {
     case 'ls projects':
       return [
         { id: id(), type: 'warning', content: '── projects/ ──────────────────────────────────' },
-        { id: id(), type: 'success', content: '  📦 alovia       Alovia AI — AI content protection (LIVE)' },
-        { id: id(), type: 'output', content: '  📦 hackhayward  HackHayward — Campus hackathon' },
-        { id: id(), type: 'output', content: '  📦 univibe      Univibe — Student collaboration platform' },
-        { id: id(), type: 'output', content: '  📦 pantrypal    PantryPal — Grocery & recipe app' },
+        { id: id(), type: 'success', content: '     twinhaus     Twinhaus, 3D AI home digital twin (OSS)' },
+        { id: id(), type: 'success', content: '     alovia       Alovia AI, AI content protection (LIVE)' },
+        { id: id(), type: 'output', content: '     hackhayward  HackHayward, Campus hackathon' },
+        { id: id(), type: 'output', content: '     univibe      Univibe, Student collaboration platform' },
+        { id: id(), type: 'output', content: '     pantrypal    PantryPal, Grocery & recipe app' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'system', content: 'Use "cat <project>" to view details.' },
       ];
@@ -142,30 +145,57 @@ function getOutput(cmd: string): TerminalLine[] {
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'success', content: '  ● OpenAI CSU Student Ambassador' },
         { id: id(), type: 'output', content: '    California State University, East Bay' },
-        { id: id(), type: 'system', content: '    Oct 2025 — Present' },
+        { id: id(), type: 'system', content: '    Oct 2025 to Present' },
         { id: id(), type: 'output', content: '    Evangelizing AI tools & best practices across campus.' },
         { id: id(), type: 'output', content: '    Running workshops, demos, and building AI culture.' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'success', content: '  ● Library Ambassador' },
         { id: id(), type: 'output', content: '    California State University, East Bay' },
-        { id: id(), type: 'system', content: '    Mar 2025 — Present' },
+        { id: id(), type: 'system', content: '    Mar 2025 to Present' },
         { id: id(), type: 'output', content: '    Guiding students through research tools and resources.' },
         { id: id(), type: 'output', content: '    Connecting people with the right information.' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'success', content: '  ● Office Support Assistant' },
         { id: id(), type: 'output', content: '    Sierra College' },
-        { id: id(), type: 'system', content: '    Jun 2023 — Jul 2024' },
+        { id: id(), type: 'system', content: '    Jun 2023 to Jul 2024' },
         { id: id(), type: 'output', content: '    Administrative ops, scheduling, and student support.' },
-        { id: id(), type: 'output', content: '    First professional role — learned to ship on time.' },
+        { id: id(), type: 'output', content: '    First professional role, learned to ship on time.' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'output', content: '  ─────────────────────────────────────────────' },
         { id: id(), type: 'system', content: '  Type "open resume" to download the full PDF.' },
       ];
 
+    case 'cat twinhaus':
+      return [
+        { id: id(), type: 'warning', content: '── Twinhaus ───────────────────────────────────' },
+        { id: id(), type: 'success', content: '  Status: Open source, in active development' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'output', content: '  Turn any home into an AI home. An open source' },
+        { id: id(), type: 'output', content: '  3D digital twin of your house, with an AI agent' },
+        { id: id(), type: 'output', content: '  as its brain, built on top of Home Assistant.' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'output', content: '  A live, walkable 3D replica of your real home in' },
+        { id: id(), type: 'output', content: '  the browser. Every smart device shows up exactly' },
+        { id: id(), type: 'output', content: '  where it lives, controllable by natural language:' },
+        { id: id(), type: 'output', content: '  "dim the living room and lock the back door."' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'system', content: '  Key Features:' },
+        { id: id(), type: 'output', content: '    → Floor plan editor that extrudes into 3D' },
+        { id: id(), type: 'output', content: '    → Live device states via Home Assistant' },
+        { id: id(), type: 'output', content: '    → AI agent with a confirmation gate on risky actions' },
+        { id: id(), type: 'output', content: '    → Simulation mode and device recommendations' },
+        { id: id(), type: 'output', content: '    → Runs locally, bring your own LLM (Ollama)' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'system', content: '  Role: Creator, product and engineering' },
+        { id: id(), type: 'output', content: '  Stack: Three.js, TypeScript, Home Assistant, LLMs' },
+        { id: id(), type: 'output', content: '' },
+        { id: id(), type: 'link', content: '  Code: github.com/Jagga-tech/twinhaus', href: 'https://github.com/Jagga-tech/twinhaus' },
+      ];
+
     case 'cat alovia':
       return [
         { id: id(), type: 'warning', content: '── Alovia AI ──────────────────────────────────' },
-        { id: id(), type: 'success', content: '  Status: 🟢 LIVE — aloviaai.com' },
+        { id: id(), type: 'success', content: '  Status: Live at aloviaai.com' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'output', content: '  AI-powered content protection platform that defends' },
         { id: id(), type: 'output', content: '  websites against unauthorized bot scraping and' },
@@ -186,7 +216,7 @@ function getOutput(cmd: string): TerminalLine[] {
     case 'cat hackhayward':
       return [
         { id: id(), type: 'warning', content: '── HackHayward ────────────────────────────────' },
-        { id: id(), type: 'success', content: '  Status: 🟡 Active — Organizing' },
+        { id: id(), type: 'success', content: '  Status: Active, organizing' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'output', content: '  Campus hackathon event at CSUEB.' },
         { id: id(), type: 'output', content: '  Leading the organizing team as Tech Lead.' },
@@ -203,7 +233,7 @@ function getOutput(cmd: string): TerminalLine[] {
     case 'cat univibe':
       return [
         { id: id(), type: 'warning', content: '── Univibe ────────────────────────────────────' },
-        { id: id(), type: 'output', content: '  Status: ⏸️  Paused' },
+        { id: id(), type: 'output', content: '  Status: Paused' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'output', content: '  Student collaboration platform designed to connect' },
         { id: id(), type: 'output', content: '  students for projects, study groups, and campus life.' },
@@ -219,7 +249,7 @@ function getOutput(cmd: string): TerminalLine[] {
     case 'cat pantrypal':
       return [
         { id: id(), type: 'warning', content: '── PantryPal ──────────────────────────────────' },
-        { id: id(), type: 'success', content: '  Status: ✅ Completed' },
+        { id: id(), type: 'success', content: '  Status: Completed' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'output', content: '  Android app for grocery and recipe management.' },
         { id: id(), type: 'output', content: '  Track pantry inventory, discover recipes based' },
@@ -258,16 +288,16 @@ function getOutput(cmd: string): TerminalLine[] {
       return [
         { id: id(), type: 'warning', content: '── Contact ────────────────────────────────────' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'output', content: '  📧 Email' },
+        { id: id(), type: 'output', content: '  Email' },
         { id: id(), type: 'link', content: '     chanpreet.singh.cv@gmail.com', href: 'mailto:chanpreet.singh.cv@gmail.com' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'output', content: '  💼 LinkedIn' },
+        { id: id(), type: 'output', content: '  LinkedIn' },
         { id: id(), type: 'link', content: '     linkedin.com/in/chanpreet-singh-259003259', href: 'https://www.linkedin.com/in/chanpreet-singh-259003259' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'output', content: '  🐙 GitHub' },
+        { id: id(), type: 'output', content: '  GitHub' },
         { id: id(), type: 'link', content: '     github.com/Jagga-tech', href: 'https://github.com/Jagga-tech' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'output', content: '  📍 Location' },
+        { id: id(), type: 'output', content: '  Location' },
         { id: id(), type: 'success', content: '     Hayward, CA (Bay Area)' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'system', content: '  Open to full-time PM opportunities!' },
@@ -282,7 +312,7 @@ function getOutput(cmd: string): TerminalLine[] {
         { id: id(), type: 'output', content: '  most of my time shipping products that sit at the' },
         { id: id(), type: 'output', content: '  intersection of AI and real user needs.' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'output', content: '  I founded Alovia AI — a content protection platform' },
+        { id: id(), type: 'output', content: '  I founded Alovia AI, a content protection platform' },
         { id: id(), type: 'output', content: '  that\'s live and serving users. I lead the tech side' },
         { id: id(), type: 'output', content: '  of HackHayward, our campus hackathon. And I serve' },
         { id: id(), type: 'output', content: '  as an OpenAI Student Ambassador, running workshops' },
@@ -323,7 +353,7 @@ function getOutput(cmd: string): TerminalLine[] {
     case 'sudo hire chanpreet':
       return [
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'success', content: '  ✅ Permission granted.' },
+        { id: id(), type: 'success', content: '  Permission granted.' },
         { id: id(), type: 'success', content: '  Hiring process initiated...' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'output', content: '  > Deploying Chanpreet to your team...' },
@@ -331,14 +361,14 @@ function getOutput(cmd: string): TerminalLine[] {
         { id: id(), type: 'output', content: '  > Loading AI expertise... done.' },
         { id: id(), type: 'output', content: '  > Loading shipping velocity... done.' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'success', content: '  🎉 Chanpreet has joined the team!' },
+        { id: id(), type: 'success', content: '  Chanpreet has joined the team!' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'system', content: '  (Seriously though — reach out! chanpreet.singh.cv@gmail.com)' },
+        { id: id(), type: 'system', content: '  (Seriously though, reach out! chanpreet.singh.cv@gmail.com)' },
       ];
 
     case 'sudo rm -rf chanpreet':
       return [
-        { id: id(), type: 'error', content: '  ❌ ERROR: Operation not permitted.' },
+        { id: id(), type: 'error', content: '  ERROR: Operation not permitted.' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'output', content: '  Chanpreet is protected by:' },
         { id: id(), type: 'warning', content: '    → Relentless work ethic' },
@@ -346,7 +376,7 @@ function getOutput(cmd: string): TerminalLine[] {
         { id: id(), type: 'warning', content: '    → An unhealthy amount of coffee' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'output', content: '  rm: cannot remove \'chanpreet\': Permission denied' },
-        { id: id(), type: 'system', content: '  Nice try though. 😄' },
+        { id: id(), type: 'system', content: '  Nice try though.' },
       ];
 
     case 'matrix':
