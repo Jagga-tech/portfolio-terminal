@@ -56,7 +56,7 @@ const HOME_LINES: { type: LineType; content: string; href?: string }[] = [
   { type: 'output', content: '  ● Office Support Assistant        — Sierra College (2023-2024)' },
   { type: 'output', content: '' },
   { type: 'warning', content: '── Projects ───────────────────────────────────' },
-  { type: 'success', content: '  🟢 Twinhaus       3D AI home digital twin      Open Source' },
+  { type: 'success', content: '     Twinhaus       3D AI home digital twin      Open Source' },
   { type: 'success', content: '  🟢 Alovia AI      AI content protection        aloviaai.com' },
   { type: 'output', content: '  🟡 HackHayward    Campus hackathon              Tech Lead' },
   { type: 'output', content: '  ⏸️  Univibe        Student collaboration         Paused' },
@@ -130,7 +130,7 @@ function getOutput(cmd: string): TerminalLine[] {
     case 'ls projects':
       return [
         { id: id(), type: 'warning', content: '── projects/ ──────────────────────────────────' },
-        { id: id(), type: 'success', content: '  📦 twinhaus     Twinhaus — 3D AI home digital twin (OSS)' },
+        { id: id(), type: 'success', content: '     twinhaus     Twinhaus, 3D AI home digital twin (OSS)' },
         { id: id(), type: 'success', content: '  📦 alovia       Alovia AI — AI content protection (LIVE)' },
         { id: id(), type: 'output', content: '  📦 hackhayward  HackHayward — Campus hackathon' },
         { id: id(), type: 'output', content: '  📦 univibe      Univibe — Student collaboration platform' },
@@ -168,11 +168,11 @@ function getOutput(cmd: string): TerminalLine[] {
     case 'cat twinhaus':
       return [
         { id: id(), type: 'warning', content: '── Twinhaus ───────────────────────────────────' },
-        { id: id(), type: 'success', content: '  Status: 🟢 Open Source — In active development' },
+        { id: id(), type: 'success', content: '  Status: Open source, in active development' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'output', content: '  Turn any home into an AI home. An open-source' },
+        { id: id(), type: 'output', content: '  Turn any home into an AI home. An open source' },
         { id: id(), type: 'output', content: '  3D digital twin of your house, with an AI agent' },
-        { id: id(), type: 'output', content: '  as its brain — built on top of Home Assistant.' },
+        { id: id(), type: 'output', content: '  as its brain, built on top of Home Assistant.' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'output', content: '  A live, walkable 3D replica of your real home in' },
         { id: id(), type: 'output', content: '  the browser. Every smart device shows up exactly' },
@@ -180,16 +180,16 @@ function getOutput(cmd: string): TerminalLine[] {
         { id: id(), type: 'output', content: '  "dim the living room and lock the back door."' },
         { id: id(), type: 'output', content: '' },
         { id: id(), type: 'system', content: '  Key Features:' },
-        { id: id(), type: 'output', content: '    → Floor plan editor → 3D extrusion' },
-        { id: id(), type: 'output', content: '    → Live device states via Home Assistant' },
-        { id: id(), type: 'output', content: '    → AI agent with a safety-gated action loop' },
-        { id: id(), type: 'output', content: '    → Simulation mode & device recommendations' },
-        { id: id(), type: 'output', content: '    → Local-first, bring-your-own LLM (Ollama)' },
+        { id: id(), type: 'output', content: '    > Floor plan editor that extrudes into 3D' },
+        { id: id(), type: 'output', content: '    > Live device states via Home Assistant' },
+        { id: id(), type: 'output', content: '    > AI agent with a confirmation gate on risky actions' },
+        { id: id(), type: 'output', content: '    > Simulation mode and device recommendations' },
+        { id: id(), type: 'output', content: '    > Runs locally, bring your own LLM (Ollama)' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'system', content: '  Role: Creator / Product & Engineering' },
+        { id: id(), type: 'system', content: '  Role: Creator, product and engineering' },
         { id: id(), type: 'output', content: '  Stack: Three.js, TypeScript, Home Assistant, LLMs' },
         { id: id(), type: 'output', content: '' },
-        { id: id(), type: 'link', content: '  → Code: github.com/Jagga-tech/twinhaus', href: 'https://github.com/Jagga-tech/twinhaus' },
+        { id: id(), type: 'link', content: '  Code: github.com/Jagga-tech/twinhaus', href: 'https://github.com/Jagga-tech/twinhaus' },
       ];
 
     case 'cat alovia':
